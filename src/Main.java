@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,16 +11,31 @@ public class Main {
             wylos[i] = (int) (Math.random()*100 +1);
 
         }
-        for (int i = 0; i < wylos.length; i++) {
-            if(i % 2 == 0){
-                parzyste.add(i);
-
+        Arrays.sort(wylos);
+        int najczestszyelement = wylos[0];
+        int liczbawyst = 1;
+        int akualelement = wylos[0];
+        int akualliczbwyst = 1;
+        for (int i = 1; i < wylos.length; i++) {
+            if(wylos[i-1] == wylos[i]){
+                akualliczbwyst++;
             }
             else{
-                nieparzyste.add(i);
+                if(akualliczbwyst>liczbawyst) {
+                    liczbawyst = akualliczbwyst;
+                    najczestszyelement = akualelement;
+                }
+                    akualelement = wylos[i];
+                    akualliczbwyst = 1;
+
             }
         }
-        System.out.println(parzyste);
-        System.out.println(nieparzyste);
+        for(int i : wylos) {
+            System.out.println(i);
+        }
+        System.out.println("Najczęstszy");
+        System.out.println(najczestszyelement);
+        System.out.println(liczbawyst);
+
     }
 }
